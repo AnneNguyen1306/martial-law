@@ -12,11 +12,12 @@
             color: #333; 
             margin: 0; 
             padding: 20px; 
+            font-size: 16px; /* Chỉnh cỡ chữ cơ bản của toàn trang */
         }
-        .container { max-width: 850px; margin: 0 auto; }
+        .container { max-width: 95%; margin: 0 auto; } /* Mở rộng tràn lề để bớt vùng trắng hai bên */
         h1 { text-align: center; color: #4a1515; font-size: 1.8em; margin-bottom: 20px; line-height: 1.4;}
         
-        /* Bảng điểm ghim trên cùng (Theme Burgundy) */
+        /* Bảng điểm ghim trên cùng */
         .score-banner {
             position: sticky;
             top: 10px;
@@ -28,65 +29,119 @@
             font-weight: bold;
             z-index: 100;
             border-radius: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        /* Thẻ chứa từng câu hỏi */
+        /* --- KHUNG CÂU HỎI (Đã thu gọn vùng trắng) --- */
         .question-card { 
             background: #fff; 
             border-radius: 12px; 
-            padding: 10px; 
-            margin-bottom: 10px; 
+            padding: 15px; /* Đã thu nhỏ để bớt vùng trắng */
+            margin-bottom: 15px; 
             box-shadow: 0 4px 8px rgba(0,0,0,0.08); 
             border-top: 5px solid #c0392b;
         }
-        .q-header { font-size: 0.9em; color: #000000; font-weight: bold; margin-bottom: 10px; text-transform: uppercase;}
-        .q-word { font-size: 2.5em; font-weight: bold; color: #2c3e50; margin-bottom: 10px; text-align: center; }
+        .q-header { 
+            font-size: 1em; 
+            color: #000000; 
+            font-weight: bold; 
+            margin-bottom: 10px; 
+            text-transform: uppercase;
+        }
+        .q-word { 
+            font-size: 2.5em; 
+            font-weight: bold; 
+            color: #2c3e50; 
+            margin-bottom: 15px; 
+            text-align: center; 
+        }
         
         /* Lưới đáp án */
         .options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         @media (max-width: 600px) { .options { grid-template-columns: 1fr; } }
         
         .opt-btn { 
-            padding: 15px; font-size: 1.05em; border: 2px solid #e0e6ed; 
+            padding: 15px; font-size: 1.1em; border: 2px solid #e0e6ed; 
             border-radius: 8px; background: #fff; cursor: pointer; 
-            transition: 0.2s; text-align: center; font-weight: 500; color: #34495e;
+            transition: 0.2s; text-align: center; font-weight: bold; color: #34495e;
         }
         .opt-btn:hover:not(:disabled) { border-color: #c0392b; background: #fdf2f2; }
         .opt-btn:disabled { cursor: default; }
-        
-        /* Màu sắc khi Chọn Đúng / Sai */
         .opt-btn.correct { background: #d4edda; border-color: #28a745; color: #155724; }
         .opt-btn.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
         
-        /* Hộp giải thích CHỮA CHI TIẾT */
+        /* --- KHUNG GIẢI THÍCH CHI TIẾT --- */
         .explanation { 
-            margin-top: 20px; padding: 20px; border-radius: 8px; 
-            background: #fdfefe; border-left: 5px solid #e74c3c; line-height: 1.6;
+            margin-top: 15px; 
+            padding: 15px; 
+            border-radius: 8px; 
+            background: #fdfefe; 
+            border-left: 5px solid #e74c3c; 
+            line-height: 1.6;
             animation: fadeIn 0.4s ease-in-out;
-            font-size: 0.95em;
             box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
         }
-        .explanation strong { color: #c0392b; font-size: 1.1em; display: block; margin-bottom: 8px;}
-        .explanation .meaning { margin-bottom: 15px; color: #34495e; }
+
+        /* Chữ Đáp án đúng */
+        .correct-ans { 
+            color: #c0392b; 
+            font-size: 1.3em; /* Cỡ chữ to */
+            display: block; 
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        /* Chữ Giải nghĩa */
+        .explanation .meaning { 
+            margin-bottom: 15px; 
+            color: #2c3e50; 
+            font-size: 1.15em; /* Cỡ chữ to */
+        }
         
-        /* Khu vực Ví dụ */
+        /* --- KHU VỰC VÍ DỤ --- */
         .example-box {
-            background: #f4f6f7; padding: 12px; border-radius: 6px; 
-            margin-bottom: 15px; color: #2c3e50; font-style: italic;
+            background: #f4f6f7; 
+            padding: 12px; 
+            border-radius: 6px; 
+            margin-bottom: 15px; 
             border-left: 3px solid #3498db;
         }
-        .example-box .kr-ex { font-weight: bold; font-size: 2.0em; color: #2980b9;}
-        .example-box .vn-ex { font-size: 1.2em; color: black; margin-top: 5px;}
+        .example-box .ex-header strong {
+            font-size: 1.2em;
+            color: #2980b9;
+        }
 
-        /* Label Hán Việt tách chữ */
+        /* Tiếng Hàn Ví dụ nằm chung dòng */
+        .example-box .kr-ex { 
+            font-weight: bold; 
+            font-size: 1.6em; /* Cỡ chữ to */
+            color: #2980b9;
+            margin-left: 8px; /* Tách một chút khỏi chữ Ví dụ */
+        }
+
+        /* Tiếng Việt dịch màu đen */
+        .example-box .vn-ex { 
+            font-size: 1.2em; /* Cỡ chữ to */
+            color: black; /* Sửa thành màu đen theo yêu cầu */
+            margin-top: 8px;
+        }
+
+        /* --- PHÂN TÍCH HÁN HÀN --- */
         .han-viet-box {
-            display: block; background: #fdf2e9; color: #b9770e; 
-            padding: 12px; border-radius: 5px; font-size: 0.95em; 
+            display: block; 
+            background: #fdf2e9; 
+            color: black; /* Đổi màu chữ thành đen dễ đọc */
+            padding: 12px; 
+            border-radius: 5px; 
+            font-size: 1.15em; /* Cỡ chữ to */
             border: 1px solid #f5cba7;
         }
-        .han-viet-box span { font-weight: bold; color: #d35400; }
+        .han-viet-box span { 
+            font-weight: bold; 
+            color: #d35400; 
+            font-size: 1.1em;
+        }
         
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
@@ -106,26 +161,26 @@
 // Dữ liệu 50 từ vựng với giải thích CHI TIẾT + VÍ DỤ
 const vocabList = [
     // 1. Chính trị & Pháp luật
-    { kr: "계엄령", vn: "Thiết quân luật", detail: "Lệnh áp dụng chế độ quân sự lên một khu vực hoặc toàn quốc trong tình trạng khẩn cấp, đình chỉ pháp luật thông thường.", ex_kr: "대통령이 비상 계엄령을 선포했습니다.", ex_vn: "Tổng thống đã ban bố lệnh thiết quân luật khẩn cấp.", han: "<span>계</span> (Giới: phòng bị) + <span>엄</span> (Nghiêm: nghiêm ngặt) + <span>령</span> (Lệnh) ➔ Lệnh phòng bị nghiêm ngặt." },
-    { kr: "선포하다", vn: "Tuyên bố, ban bố", detail: "Chính thức công bố một quyết định quan trọng cho toàn dân biết.", ex_kr: "국가는 비상사태를 선포했다.", ex_vn: "Quốc gia đã tuyên bố tình trạng khẩn cấp.", han: "<span>선</span> (Tuyên: nói ra/công bố) + <span>포</span> (Bố: bày ra/ban ra)." },
+    { kr: "계엄령", vn: "Thiết quân luật", detail: "Lệnh áp dụng chế độ quân sự lên một khu vực hoặc toàn quốc trong tình trạng khẩn cấp.", ex_kr: "대통령이 비상 계엄령을 선포했습니다.", ex_vn: "Tổng thống đã ban bố lệnh thiết quân luật khẩn cấp.", han: "<span>계</span> (Giới: phòng bị) + <span>엄</span> (Nghiêm: nghiêm ngặt) + <span>령</span> (Lệnh) ➔ Lệnh phòng bị nghiêm ngặt." },
+    { kr: "선포하다", vn: "Tuyên bố, ban bố", detail: "Chính thức công bố một quyết định quan trọng cho toàn dân biết.", ex_kr: "국가는 비상사태를 선포했다.", ex_vn: "Quốc gia đã tuyên bố tình trạng khẩn cấp.", han: "<span>선</span> (Tuyên: công bố) + <span>포</span> (Bố: ban ra)." },
     { kr: "해제하다", vn: "Bãi bỏ, dỡ bỏ", detail: "Gỡ bỏ những lệnh cấm, luật lệ, hoặc sự hạn chế trước đó.", ex_kr: "계엄령이 드디어 해제되었습니다.", ex_vn: "Lệnh thiết quân luật cuối cùng đã được dỡ bỏ.", han: "<span>해</span> (Giải: cởi ra) + <span>제</span> (Trừ: bỏ đi)." },
     { kr: "국회", vn: "Quốc hội", detail: "Cơ quan lập pháp tối cao của một quốc gia, nơi đại diện cho nhân dân.", ex_kr: "국회에서 새로운 법안을 통과시켰습니다.", ex_vn: "Quốc hội đã thông qua dự luật mới.", han: "<span>국</span> (Quốc: đất nước) + <span>회</span> (Hội: tụ họp)." },
-    { kr: "표결", vn: "Biểu quyết", detail: "Hành động bỏ phiếu để quyết định tán thành hay phản đối một vấn đề.", ex_kr: "법안에 대한 표결이 진행 중입니다.", ex_vn: "Việc biểu quyết cho dự luật đang được tiến hành.", han: "<span>표</span> (Biểu: tấm vé/phiếu) + <span>결</span> (Quyết: quyết định)." },
+    { kr: "표결", vn: "Biểu quyết", detail: "Hành động bỏ phiếu để quyết định tán thành hay phản đối một vấn đề.", ex_kr: "법안에 대한 표결이 진행 중입니다.", ex_vn: "Việc biểu quyết cho dự luật đang được tiến hành.", han: "<span>표</span> (Biểu: phiếu) + <span>결</span> (Quyết: quyết định)." },
     { kr: "헌법", vn: "Hiến pháp", detail: "Đạo luật cơ bản và tối cao nhất của một quốc gia.", ex_kr: "모든 권력은 헌법으로부터 나온다.", ex_vn: "Mọi quyền lực đều xuất phát từ Hiến pháp.", han: "<span>헌</span> (Hiến: phép tắc) + <span>법</span> (Pháp: luật lệ)." },
     { kr: "민주주의", vn: "Chủ nghĩa dân chủ", detail: "Chế độ chính trị mà quyền lực nhà nước thuộc về nhân dân.", ex_kr: "우리는 민주주의 국가에 살고 있습니다.", ex_vn: "Chúng ta đang sống trong một quốc gia dân chủ.", han: "<span>민</span> (Dân) + <span>주</span> (Chủ) + <span>주</span> (Chủ) + <span>의</span> (Nghĩa)." },
-    { kr: "군사 독재", vn: "Độc tài quân sự", detail: "Chế độ chính quyền do giới quân đội thâu tóm và cai trị bằng vũ lực.", ex_kr: "과거에 군사 독재 정권이 있었습니다.", ex_vn: "Trong quá khứ đã từng có chính quyền độc tài quân sự.", han: "<span>군사</span> (Quân sự) + <span>독재</span> (Độc tài: Tự mình quyết định)." },
+    { kr: "군사 독재", vn: "Độc tài quân sự", detail: "Chế độ chính quyền do giới quân đội thâu tóm và cai trị bằng vũ lực.", ex_kr: "과거에 군사 독재 정권이 있었습니다.", ex_vn: "Trong quá khứ đã từng có chính quyền độc tài quân sự.", han: "<span>군사</span> (Quân sự) + <span>독재</span> (Độc tài)." },
     { kr: "정당", vn: "Đảng phái chính trị", detail: "Tổ chức của những người có cùng chí hướng chính trị.", ex_kr: "새로운 정당을 창당하다.", ex_vn: "Sáng lập một đảng phái mới.", han: "<span>정</span> (Chính: chính trị) + <span>당</span> (Đảng: bè phái)." },
-    { kr: "집회", vn: "Tập hợp, mít tinh", detail: "Sự tụ tập đông người ở nơi công cộng để bày tỏ quan điểm chính trị hoặc xã hội.", ex_kr: "광장에서 대규모 집회가 열렸습니다.", ex_vn: "Một cuộc mít tinh quy mô lớn đã diễn ra tại quảng trường.", han: "<span>집</span> (Tập: gom lại) + <span>회</span> (Hội: họp)." },
+    { kr: "집회", vn: "Tập hợp, mít tinh", detail: "Sự tụ tập đông người ở nơi công cộng để bày tỏ quan điểm.", ex_kr: "광장에서 대규모 집회가 열렸습니다.", ex_vn: "Một cuộc mít tinh quy mô lớn đã diễn ra tại quảng trường.", han: "<span>집</span> (Tập: gom lại) + <span>회</span> (Hội: họp)." },
 
     // 2. Quân đội & Kiểm soát
     { kr: "군대", vn: "Quân đội", detail: "Lực lượng vũ trang của một quốc gia để bảo vệ đất nước.", ex_kr: "형은 내년에 군대에 입대합니다.", ex_vn: "Anh trai tôi sẽ nhập ngũ vào năm sau.", han: "<span>군</span> (Quân: lính) + <span>대</span> (Đội: nhóm/toán)." },
     { kr: "계엄군", vn: "Quân đội thiết quân luật", detail: "Lực lượng quân đội được điều động để duy trì trật tự khi có thiết quân luật.", ex_kr: "계엄군이 도시를 통제하고 있습니다.", ex_vn: "Quân đội thiết quân luật đang kiểm soát thành phố.", han: "<span>계엄</span> (Thiết quân luật) + <span>군</span> (Quân đội)." },
-    { kr: "무장하다", vn: "Vũ trang", detail: "Trang비 các loại vũ khí, súng ống để chiến đấu hoặc phòng vệ.", ex_kr: "경찰이 완전 무장한 채 출동했습니다.", ex_vn: "Cảnh sát đã xuất kích trong trạng thái vũ trang toàn diện.", han: "<span>무</span> (Vũ: liên quan đến võ/quân sự) + <span>장</span> (Trang: trang bị)." },
-    { kr: "통제하다", vn: "Kiểm soát, khống chế", detail: "Quản lý, điều khiển không cho hoạt động tự do theo ý muốn.", ex_kr: "군인이 시민들의 이동을 통제하고 있다.", ex_vn: "Quân nhân đang kiểm soát sự di chuyển của người dân.", han: "<span>통</span> (Thống: cai quản/tổng hợp) + <span>제</span> (Chế: ép vào khuôn)." },
+    { kr: "무장하다", vn: "Vũ trang", detail: "Trang bị các loại vũ khí, súng ống để chiến đấu hoặc phòng vệ.", ex_kr: "경찰이 완전 무장한 채 출동했습니다.", ex_vn: "Cảnh sát đã xuất kích trong trạng thái vũ trang toàn diện.", han: "<span>무</span> (Vũ: quân sự) + <span>장</span> (Trang: trang bị)." },
+    { kr: "통제하다", vn: "Kiểm soát, khống chế", detail: "Quản lý, điều khiển không cho hoạt động tự do theo ý muốn.", ex_kr: "군인이 시민들의 이동을 통제하고 있다.", ex_vn: "Quân nhân đang kiểm soát sự di chuyển của người dân.", han: "<span>통</span> (Thống: cai quản) + <span>제</span> (Chế: ép vào khuôn)." },
     { kr: "금지하다", vn: "Cấm, ngăn cấm", detail: "Không cho phép làm một hành động nào đó theo quy định pháp luật.", ex_kr: "야간 통행을 엄격히 금지합니다.", ex_vn: "Nghiêm cấm qua lại vào ban đêm.", han: "<span>금</span> (Cấm: không cho) + <span>지</span> (Chỉ: dừng lại)." },
     { kr: "검열", vn: "Kiểm duyệt", detail: "Kiểm tra trước nội dung (báo chí, internet) xem có phù hợp để công bố không.", ex_kr: "언론에 대한 검열이 심해졌습니다.", ex_vn: "Sự kiểm duyệt đối với báo chí đã trở nên nghiêm ngặt hơn.", han: "<span>검</span> (Kiểm: xem xét) + <span>열</span> (Duyệt: xem kỹ)." },
-    { kr: "체포하다", vn: "Bắt giữ", detail: "Hành động bắt người có tội hoặc tình nghi vi phạm pháp luật bằng vũ lực/quyền hạn.", ex_kr: "경찰은 시위 주동자를 체포했다.", ex_vn: "Cảnh sát đã bắt giữ kẻ cầm đầu cuộc biểu tình.", han: "<span>체</span> (Đãi/Thể: tóm lấy) + <span>포</span> (Bộ: bắt/vồ lấy)." },
-    { kr: "구금", vn: "Giam giữ", detail: "Giam lỏng hoặc nhốt một người vào nơi quản thúc theo pháp luật.", ex_kr: "그는 재판을 받기 전까지 구금되었다.", ex_vn: "Anh ta bị giam giữ cho đến khi nhận xét xử.", han: "<span>구</span> (Câu: bắt lấy) + <span>금</span> (Cấm: nhốt/không cho ra)." },
+    { kr: "체포하다", vn: "Bắt giữ", detail: "Hành động bắt người có tội hoặc tình nghi vi phạm pháp luật bằng vũ lực.", ex_kr: "경찰은 시위 주동자를 체포했다.", ex_vn: "Cảnh sát đã bắt giữ kẻ cầm đầu cuộc biểu tình.", han: "<span>체</span> (Thể: tóm lấy) + <span>포</span> (Bộ: bắt giữ)." },
+    { kr: "구금", vn: "Giam giữ", detail: "Giam lỏng hoặc nhốt một người vào nơi quản thúc theo pháp luật.", ex_kr: "그는 재판을 받기 전까지 구금되었다.", ex_vn: "Anh ta bị giam giữ cho đến khi nhận xét xử.", han: "<span>구</span> (Câu: bắt lấy) + <span>금</span> (Cấm: nhốt)." },
     { kr: "출입", vn: "Ra vào", detail: "Hành động đi ra và đi vào một khu vực nào đó.", ex_kr: "외부인의 출입을 통제합니다.", ex_vn: "Kiểm soát sự ra vào của người ngoài.", han: "<span>출</span> (Xuất: ra) + <span>입</span> (Nhập: vào)." },
     { kr: "봉쇄하다", vn: "Phong tỏa", detail: "Chặn đứng mọi ngả đường, không cho phép ra vào một khu vực.", ex_kr: "군대가 국회 건물을 전면 봉쇄했습니다.", ex_vn: "Quân đội đã phong tỏa toàn diện tòa nhà Quốc hội.", han: "<span>봉</span> (Phong: đóng kín) + <span>쇄</span> (Tỏa: khóa lại)." },
 
@@ -133,35 +188,35 @@ const vocabList = [
     { kr: "긴급", vn: "Khẩn cấp", detail: "Tình huống vô cùng gấp gáp, cần xử lý ngay lập tức.", ex_kr: "대통령이 긴급 회의를 소집했습니다.", ex_vn: "Tổng thống đã triệu tập một cuộc họp khẩn cấp.", han: "<span>긴</span> (Khẩn: gấp) + <span>급</span> (Cấp: vội vã)." },
     { kr: "비상", vn: "Phi thường, khẩn cấp", detail: "Tình trạng không bình thường, có nguy cơ lớn xảy ra.", ex_kr: "현재 국가는 비상사태입니다.", ex_vn: "Hiện tại quốc gia đang trong tình trạng khẩn cấp.", han: "<span>비</span> (Phi: không phải) + <span>상</span> (Thường: bình thường)." },
     { kr: "충돌", vn: "Xung đột", detail: "Sự va chạm mạnh (vật lý) hoặc mâu thuẫn gay gắt về tư tưởng, lực lượng.", ex_kr: "시위대와 경찰 간의 무력 충돌이 있었습니다.", ex_vn: "Đã có sự xung đột vũ trang giữa người biểu tình và cảnh sát.", han: "<span>충</span> (Xung: va đập) + <span>돌</span> (Đột: xông vào)." },
-    { kr: "대치하다", vn: "Đối đầu, đối diện", detail: "Hai bên đứng nhìn nhau với thái độ thù địch, căng thẳng không chịu nhượng bộ.", ex_kr: "양측이 팽팽하게 대치하고 있습니다.", ex_vn: "Hai bên đang đối đầu vô cùng căng thẳng.", han: "<span>대</span> (Đối: đối mặt) + <span>치</span> (Trĩ: bày ra/đứng)." },
-    { kr: "긴장감", vn: "Cảm giác căng thẳng", detail: "Bầu không khí hồi hộp, lo âu, ngột ngạt.", ex_kr: "회의실에 무거운 긴장감이 감돌았다.", ex_vn: "Cảm giác căng thẳng nặng nề bao trùm phòng họp.", han: "<span>긴</span> (Khẩn: kéo căng) + <span>장</span> (Trương: giương lên) + <span>감</span> (Cảm: cảm nhận)." },
-    { kr: "일촉즉발", vn: "Tình thế ngàn cân treo sợi tóc", detail: "Trạng thái chỉ cần chạm nhẹ là nổ tung, cực kỳ nguy hiểm.", ex_kr: "지금은 일촉즉발의 위기 상황입니다.", ex_vn: "Bây giờ là tình huống nguy hiểm ngàn cân treo sợi tóc.", han: "<span>일</span> (Nhất: một) + <span>촉</span> (Xúc: chạm) + <span>즉</span> (Tức: ngay lập tức) + <span>발</span> (Phát: bùng nổ)." },
+    { kr: "대치하다", vn: "Đối đầu, đối diện", detail: "Hai bên đứng nhìn nhau với thái độ thù địch, căng thẳng.", ex_kr: "양측이 팽팽하게 대치하고 있습니다.", ex_vn: "Hai bên đang đối đầu vô cùng căng thẳng.", han: "<span>대</span> (Đối: đối mặt) + <span>치</span> (Trĩ: bày ra/đứng)." },
+    { kr: "긴장감", vn: "Cảm giác căng thẳng", detail: "Bầu không khí hồi hộp, lo âu, ngột ngạt.", ex_kr: "회의실에 무거운 긴장감이 감돌았다.", ex_vn: "Cảm giác căng thẳng nặng nề bao trùm phòng họp.", han: "<span>긴</span> (Khẩn: kéo căng) + <span>장</span> (Trương: giương) + <span>감</span> (Cảm: cảm nhận)." },
+    { kr: "일촉즉발", vn: "Tình thế ngàn cân treo sợi tóc", detail: "Trạng thái chỉ cần chạm nhẹ là nổ tung, cực kỳ nguy hiểm.", ex_kr: "지금은 일촉즉발의 위기 상황입니다.", ex_vn: "Bây giờ là tình huống nguy hiểm ngàn cân treo sợi tóc.", han: "<span>일</span> (Nhất: 1) + <span>촉</span> (Xúc: chạm) + <span>즉</span> (Tức: ngay lập tức) + <span>발</span> (Phát: nổ)." },
     { kr: "혼란", vn: "Hỗn loạn", detail: "Sự rối ren, không có trật tự, mất kiểm soát.", ex_kr: "나라 전체가 극심한 혼란에 빠졌습니다.", ex_vn: "Toàn bộ đất nước đã rơi vào sự hỗn loạn tột độ.", han: "<span>혼</span> (Hỗn: lẫn lộn) + <span>란</span> (Loạn: rối ren)." },
-    { kr: "충격적", vn: "Gây sốc", detail: "Tạo ra sự ngạc nhiên lớn, chấn động tinh thần.", ex_kr: "어젯밤 너무 충격적인 뉴스를 보았다.", ex_vn: "Tối qua tôi đã xem một bản tin quá đỗi gây sốc.", han: "<span>충</span> (Xung: va chạm) + <span>격</span> (Kích: đánh) + <span>적</span> (Đích: mang tính)." },
-    { kr: "당황스럽다", vn: "Bàng hoàng, bối rối", detail: "Trạng thái không biết phải làm sao vì việc xảy ra quá bất ngờ.", ex_kr: "갑작스러운 계엄령 선포에 국민들은 당황스러워했다.", ex_vn: "Người dân đã vô cùng bàng hoàng trước lệnh thiết quân luật đột ngột.", han: "<span>당</span> (Đường: vội vã) + <span>황</span> (Hoàng: sợ hãi) + <span>스럽다</span> (Đuôi tính từ)." },
+    { kr: "충격적", vn: "Gây sốc", detail: "Tạo ra sự ngạc nhiên lớn, chấn động tinh thần.", ex_kr: "어젯밤 너무 충격적인 뉴스를 보았다.", ex_vn: "Tối qua tôi đã xem một bản tin quá đỗi gây sốc.", han: "<span>충</span> (Xung: va chạm) + <span>격</span> (Kích: đánh) + <span>적</span> (Đích: tính chất)." },
+    { kr: "당황스럽다", vn: "Bàng hoàng, bối rối", detail: "Trạng thái không biết phải làm sao vì việc xảy ra quá bất ngờ.", ex_kr: "갑작스러운 계엄령 선포에 국민들은 당황스러워했다.", ex_vn: "Người dân đã vô cùng bàng hoàng trước lệnh thiết quân luật đột ngột.", han: "<span>당</span> (Đường: vội vã) + <span>황</span> (Hoàng: sợ hãi) + <span>스럽다</span>." },
     { kr: "급박하다", vn: "Cấp bách", detail: "Thời gian rất gấp, không thể chần chừ thêm được nữa.", ex_kr: "상황이 매우 급박하게 돌아가고 있다.", ex_vn: "Tình hình đang diễn biến vô cùng cấp bách.", han: "<span>급</span> (Cấp: vội) + <span>박</span> (Bách: thúc ép)." },
 
     // 4. Lịch sử & Bối cảnh
-    { kr: "현대사", vn: "Lịch sử hiện đại", detail: "Khoảng thời gian lịch sử gần đây, thường từ sau thế chiến thứ 2 hoặc thế kỷ 20 trở lại.", ex_kr: "한국 현대사는 많은 아픔을 겪었습니다.", ex_vn: "Lịch sử hiện đại Hàn Quốc đã trải qua nhiều đau thương.", han: "<span>현</span> (Hiện: hiện tại) + <span>대</span> (Đại: thời đại) + <span>사</span> (Sử: lịch sử)." },
+    { kr: "현대사", vn: "Lịch sử hiện đại", detail: "Khoảng thời gian lịch sử gần đây, thường từ sau thế kỷ 20 trở lại.", ex_kr: "한국 현대사는 많은 아픔을 겪었습니다.", ex_vn: "Lịch sử hiện đại Hàn Quốc đã trải qua nhiều đau thương.", han: "<span>현</span> (Hiện: hiện tại) + <span>대</span> (Đại: thời đại) + <span>사</span> (Sử: lịch sử)." },
     { kr: "근현대사", vn: "Lịch sử cận hiện đại", detail: "Bao gồm cả thời kỳ cận đại (cuối thế kỷ 19) và hiện đại.", ex_kr: "수능에서 한국 근현대사가 중요하게 다뤄진다.", ex_vn: "Lịch sử cận hiện đại Hàn Quốc được đề cập rất quan trọng trong kỳ thi Đại học.", han: "<span>근</span> (Cận: gần) + <span>현대사</span> (Lịch sử hiện đại)." },
-    { kr: "민주화 운동", vn: "Phong trào dân chủ hóa", 시위: "Cuộc vận động quần chúng đấu tranh vì quyền tự do, dân chủ chống lại độc tài.", ex_kr: "1980년에 5.18 민주화 운동이 일어났습니다.", ex_vn: "Phong trào Dân chủ 18/5 đã nổ ra vào năm 1980.", han: "<span>민주화</span> (Dân chủ hóa) + <span>운동</span> (Vận động/Phong trào)." },
-    { kr: "시위", vn: "Biểu tình", detail: "Nhiều người tụ tập, đi lại trên phố để phản đối hoặc yêu cầu điều gì đó với chính phủ.", ex_kr: "시민들이 거리로 나와 평화 시위를 벌였다.", ex_vn: "Người dân đã đổ ra đường và tổ chức biểu tình hòa bình.", han: "<span>시</span> (Thị: cho xem) + <span>위</span> (Uy: sức mạnh)." },
-    { kr: "탄압하다", vn: "Đàn áp", detail: "Dùng vũ lực hoặc quyền lực mạnh để đè bẹp, dập tắt các thế lực chống đối.", ex_kr: "정부가 반대파를 가혹하게 탄압했다.", ex_vn: "Chính phủ đã đàn áp phe đối lập một cách tàn nhẫn.", han: "<span>탄</span> (Đàn: đè nén) + <span>압</span> (Áp: đè xuống)." },
+    { kr: "민주화 운동", vn: "Phong trào dân chủ hóa", detail: "Cuộc đấu tranh của quần chúng vì quyền tự do chống lại độc tài.", ex_kr: "1980년에 5.18 민주화 운동이 일어났습니다.", ex_vn: "Phong trào Dân chủ 18/5 đã nổ ra vào năm 1980.", han: "<span>민주화</span> (Dân chủ hóa) + <span>운동</span> (Vận động)." },
+    { kr: "시위", vn: "Biểu tình", detail: "Tụ tập đông người để phản đối hoặc yêu cầu điều gì đó với chính phủ.", ex_kr: "시민들이 거리로 나와 평화 시위를 벌였다.", ex_vn: "Người dân đã đổ ra đường và tổ chức biểu tình hòa bình.", han: "<span>시</span> (Thị: cho xem) + <span>위</span> (Uy: sức mạnh)." },
+    { kr: "탄압하다", vn: "Đàn áp", detail: "Dùng vũ lực hoặc quyền lực mạnh để đè bẹp các thế lực chống đối.", ex_kr: "정부가 반대파를 가혹하게 탄압했다.", ex_vn: "Chính phủ đã đàn áp phe đối lập một cách tàn nhẫn.", han: "<span>탄</span> (Đàn: đè nén) + <span>압</span> (Áp: đè xuống)." },
     { kr: "저항하다", vn: "Kháng cự, chống lại", detail: "Không chịu khuất phục, chống trả lại áp lực hoặc kẻ thù.", ex_kr: "국민들은 부당한 권력에 끝까지 저항했다.", ex_vn: "Nhân dân đã kháng cự đến cùng trước quyền lực bất công.", han: "<span>저</span> (Để: chống đỡ) + <span>항</span> (Kháng: chống lại)." },
-    { kr: "독재자", vn: "Kẻ độc tài", detail: "Người nắm mọi quyền lực tối cao và cai trị tàn bạo, không theo dân chủ.", ex_kr: "결국 그 독재자는 국민들에 의해 쫓겨났다.", ex_vn: "Cuối cùng kẻ độc tài đó đã bị nhân dân lật đổ.", han: "<span>독재</span> (Độc tài) + <span>자</span> (Giả: người)." },
-    { kr: "정권", vn: "Chính quyền", detail: "Tổ chức/nhóm người nắm giữ quyền lực chính trị để điều hành đất nước.", ex_kr: "군사 정권이 무너지고 새 정부가 들어섰다.", ex_vn: "Chính quyền quân sự sụp đổ và chính phủ mới được lập lên.", han: "<span>정</span> (Chính: chính trị) + <span>권</span> (Quyền: quyền lực)." },
-    { kr: "역사적", vn: "Mang tính lịch sử", detail: "Sự kiện vô cùng quan trọng, được ghi dấu lại lâu dài trong sử sách.", ex_kr: "오늘은 대한민국에 매우 역사적인 날입니다.", ex_vn: "Hôm nay là một ngày vô cùng mang tính lịch sử đối với Hàn Quốc.", han: "<span>역</span> (Lịch: trải qua) + <span>사</span> (Sử: ghi chép) + <span>적</span> (Đích: mang tính)." },
+    { kr: "독재자", vn: "Kẻ độc tài", detail: "Người nắm mọi quyền lực tối cao và cai trị tàn bạo.", ex_kr: "결국 그 독재자는 국민들에 의해 쫓겨났다.", ex_vn: "Cuối cùng kẻ độc tài đó đã bị nhân dân lật đổ.", han: "<span>독재</span> (Độc tài) + <span>자</span> (Giả: người)." },
+    { kr: "정권", vn: "Chính quyền", detail: "Tổ chức nắm giữ quyền lực chính trị để điều hành đất nước.", ex_kr: "군사 정권이 무너지고 새 정부가 들어섰다.", ex_vn: "Chính quyền quân sự sụp đổ và chính phủ mới được lập lên.", han: "<span>정</span> (Chính: chính trị) + <span>권</span> (Quyền: quyền lực)." },
+    { kr: "역사적", vn: "Mang tính lịch sử", detail: "Sự kiện quan trọng, được ghi dấu lại lâu dài trong sử sách.", ex_kr: "오늘은 대한민국에 매우 역사적인 날입니다.", ex_vn: "Hôm nay là một ngày vô cùng mang tính lịch sử đối với Hàn Quốc.", han: "<span>역</span> (Lịch: trải qua) + <span>사</span> (Sử: ghi chép) + <span>적</span> (Đích: tính chất)." },
     { kr: "기억하다", vn: "Ghi nhớ", detail: "Giữ lại những sự kiện, thông tin trong đầu không quên.", ex_kr: "우리는 희생자들을 영원히 기억할 것입니다.", ex_vn: "Chúng ta sẽ mãi mãi ghi nhớ những người đã hy sinh.", han: "<span>기</span> (Ký: ghi chép) + <span>억</span> (Ức: nhớ)." },
 
     // 5. Biểu hiện & Từ vựng bổ trợ
-    { kr: "유효하다", vn: "Có hiệu lực", detail: "Luật, lệnh hoặc giấy tờ vẫn còn tác dụng sử dụng hợp pháp.", ex_kr: "이 법안은 여전히 유효합니다.", ex_vn: "Dự luật này vẫn đang có hiệu력.", han: "<span>유</span> (Hữu: có) + <span>효</span> (Hiệu: hiệu quả)." },
+    { kr: "유효하다", vn: "Có hiệu lực", detail: "Luật, lệnh hoặc giấy tờ vẫn còn tác dụng hợp pháp.", ex_kr: "이 법안은 여전히 유효합니다.", ex_vn: "Dự luật này vẫn đang có hiệu lực.", han: "<span>유</span> (Hữu: có) + <span>효</span> (Hiệu: hiệu quả)." },
     { kr: "무효", vn: "Vô hiệu", detail: "Không có giá trị pháp lý, bị bác bỏ.", ex_kr: "국회 표결로 인해 계엄 선포는 무효가 되었다.", ex_vn: "Nhờ biểu quyết của Quốc hội mà lệnh thiết quân luật đã trở nên vô hiệu.", han: "<span>무</span> (Vô: không) + <span>효</span> (Hiệu: tác dụng)." },
-    { kr: "권한", vn: "Thẩm quyền", detail: "Phạm vi quyền lực được pháp luật hoặc tổ chức giao phó.", ex_kr: "대통령은 군대를 동원할 권한이 있다.", ex_vn: "Tổng thống có thẩm quyền huy động quân đội.", han: "<span>권</span> (Quyền: quyền lực) + <span>한</span> (Hạn: giới hạn/phạm vi)." },
+    { kr: "권한", vn: "Thẩm quyền", detail: "Phạm vi quyền lực được pháp luật hoặc tổ chức giao phó.", ex_kr: "대통령은 군대를 동원할 권한이 있다.", ex_vn: "Tổng thống có thẩm quyền huy động quân đội.", han: "<span>권</span> (Quyền: quyền lực) + <span>한</span> (Hạn: giới hạn)." },
     { kr: "상황", vn: "Tình huống, hoàn cảnh", detail: "Diễn biến, bối cảnh đang xảy ra tại một thời điểm.", ex_kr: "지금 상황이 아주 심각하게 돌아가고 있다.", ex_vn: "Hoàn cảnh bây giờ đang diễn biến vô cùng nghiêm trọng.", han: "<span>상</span> (Trạng: hình dáng) + <span>황</span> (Huống: cảnh ngộ)." },
     { kr: "심각하다", vn: "Nghiêm trọng", detail: "Mức độ tồi tệ, nguy hiểm cần được đặc biệt lưu tâm.", ex_kr: "경제 위기보다 정치적 갈등이 더 심각하다.", ex_vn: "Mâu thuẫn chính trị còn nghiêm trọng hơn cả khủng hoảng kinh tế.", han: "<span>심</span> (Thâm: sâu) + <span>각</span> (Khắc: khắc nghiệt)." },
     { kr: "경악하다", vn: "Kinh ngạc, khiếp sợ", detail: "Cực kỳ bất ngờ xen lẫn sự sợ hãi tột độ.", ex_kr: "군인들이 국회로 들어가는 모습에 모두 경악했다.", ex_vn: "Tất cả đều kinh ngạc tột độ trước cảnh quân nhân tiến vào Quốc hội.", han: "<span>경</span> (Kinh: sợ hãi) + <span>악</span> (Ngạc: giật mình)." },
-    { kr: "뉴스 속보", vn: "Tin tức sốt dẻo, tin khẩn", detail: "Bản tin chèn ngang chương trình bình thường để báo sự kiện khẩn cấp.", ex_kr: "TV에서 자정에 뉴스 속보가 나왔다.", ex_vn: "Trên TV đã phát bản tin khẩn cấp vào lúc nửa đêm.", han: "📺 <span>뉴스</span> (News) + <span>속</span> (Tốc: nhanh) + <span>보</span> (Báo: thông báo)." },
-    { kr: "밤잠을 설치다", vn: "Mất ngủ đêm", detail: "Thức trắng hoặc ngủ chập chờn vì lo lắng, hồi hộp hoặc hưng phấn.", ex_kr: "국민들은 속보를 보느라 밤잠을 설쳤다.", ex_vn: "Người dân đã thức trắng đêm để theo dõi tin khẩn.", han: "🌱 <span>Từ thuần Hàn:</span> 밤잠 (Giấc ngủ ban đêm) + 설치다 (Làm dở dang, chập chờn)." },
+    { kr: "뉴스 속보", vn: "Tin tức sốt dẻo, tin khẩn", detail: "Bản tin chèn ngang chương trình bình thường để báo sự kiện khẩn cấp.", ex_kr: "TV에서 자정에 뉴스 속보가 나왔다.", ex_vn: "Trên TV đã phát bản tin khẩn cấp vào lúc nửa đêm.", han: "📺 <span>뉴스</span> (News) + <span>속</span> (Tốc: nhanh) + <span>보</span> (Báo: báo tin)." },
+    { kr: "밤잠을 설치다", vn: "Mất ngủ đêm", detail: "Thức trắng hoặc ngủ chập chờn vì lo lắng, hồi hộp.", ex_kr: "국민들은 속보를 보느라 밤잠을 설쳤다.", ex_vn: "Người dân đã thức trắng đêm để theo dõi tin khẩn.", han: "🌱 <span>Từ thuần Hàn.</span>" },
     { kr: "실시간", vn: "Thời gian thực", detail: "Ngay tại thời điểm sự việc đang diễn ra (Live).", ex_kr: "유튜브를 통해 상황을 실시간으로 지켜보았다.", ex_vn: "Tôi đã theo dõi tình hình theo thời gian thực qua Youtube.", han: "<span>실</span> (Thực: thực tế) + <span>시</span> (Thời) + <span>간</span> (Gian)." },
     { kr: "대응하다", vn: "Đối phó, ứng phó", detail: "Có hành động thích hợp để giải quyết một tình huống khó khăn.", ex_kr: "야당은 정부의 조치에 강력히 대응했다.", ex_vn: "Đảng đối lập đã đối phó mạnh mẽ với biện pháp của chính phủ.", han: "<span>대</span> (Đối: đối mặt) + <span>응</span> (Ứng: đáp lại)." }
 ];
@@ -197,6 +252,7 @@ const container = document.getElementById('quiz-container');
 function renderQuiz() {
     let html = '';
     quizData.forEach((q, qIndex) => {
+        // Lưu ý HTML cấu trúc được tối ưu cho phần ví dụ (span thay vì div)
         html += `
         <div class="question-card" id="q-card-${qIndex}">
             <div class="q-header">Câu ${qIndex + 1} / 50</div>
@@ -208,12 +264,13 @@ function renderQuiz() {
             </div>
             
             <div class="explanation" id="exp-${qIndex}" style="display:none;">
-                <strong>✅ Đáp án đúng: ${q.answerText}</strong>
+                <strong class="correct-ans">✅ Đáp án đúng: ${q.answerText}</strong>
                 <div class="meaning"><em>Giải nghĩa:</em> ${q.detail}</div>
                 
                 <div class="example-box">
-                    📖 <strong>Ví dụ:</strong><br>
-                    <div class="kr-ex">${q.ex_kr}</div>
+                    <div class="ex-header">
+                        📖 <strong>Ví dụ:</strong> <span class="kr-ex">${q.ex_kr}</span>
+                    </div>
                     <div class="vn-ex">➔ ${q.ex_vn}</div>
                 </div>
 
